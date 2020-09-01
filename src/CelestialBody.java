@@ -25,7 +25,13 @@ public class CelestialBody {
 	 */
 	public CelestialBody(double xp, double yp, double xv,
 			             double yv, double mass, String filename){
-		// TODO: complete constructor
+		this.myXPos = xp;
+		this.myYPos = yp;
+		this.myXVel = xv;
+		this.myYVel = yv;
+		this.myMass = mass;
+		this.myFileName = filename;
+
 	}
 
 	/**
@@ -34,37 +40,36 @@ public class CelestialBody {
 	 * @param b used to initialize this body
 	 */
 	public CelestialBody(CelestialBody b){
-		// TODO: complete constructor
+		this.myXPos = b.myXPos;
+		this.myYPos = b.myYPos;
+		this.myXVel = b.myXVel;
+		this.myYVel = b.myYVel;
+		this.myMass = b.myMass;
+		this.myFileName = b.myFileName;
 	}
 
 	public double getX() {
-		// TODO: complete method
-		return 0.0;
+		return myXPos;
 	}
 	public double getY() {
-		// TODO: complete method
-		return 0.0;
+		return myYPos;
 	}
 	public double getXVel() {
-		// TODO: complete method
-		return 0.0;
+		return myXVel;
 	}
 	/**
 	 * Return y-velocity of this Body.
 	 * @return value of y-velocity.
 	 */
 	public double getYVel() {
-		// TODO: complete method
-		return 0.0;
+		return myYVel;
 	}
 	
 	public double getMass() {
-		// TODO: complete method
-		return 0.0;
+		return myMass;
 	}
 	public String getName() {
-		// TODO: complete method
-		return "cow planet";
+		return myFileName;
 	}
 
 	/**
@@ -73,8 +78,7 @@ public class CelestialBody {
 	 * @return distance between this body and b
 	 */
 	public double calcDistance(CelestialBody b) {
-		// TODO: complete method
-		return 0.0;
+		return Math.sqrt((this.getX()-b.getX())*(this.getX()-b.getX())+(this.getY()-b.getY())*(this.getY()-b.getY()));
 	}
 
 	public double calcForceExertedBy(CelestialBody b) {
