@@ -82,27 +82,33 @@ public class CelestialBody {
 	}
 
 	public double calcForceExertedBy(CelestialBody b) {
-		// TODO: complete method
-		return 0.0;
+		return  (6.67*1e-11*this.getMass()*b.getMass())/(Math.pow(calcDistance(b),2));
 	}
 
 	public double calcForceExertedByX(CelestialBody b) {
-		// TODO: complete method
-		return 0.0;
+		return calcForceExertedBy(b)*(b.getX()-this.getX())/calcDistance(b);
 	}
 	public double calcForceExertedByY(CelestialBody b) {
-		// TODO: complete method
-		return 0.0;
+		return calcForceExertedBy(b)*(b.getY()-this.getY())/calcDistance(b);
 	}
 
 	public double calcNetForceExertedByX(CelestialBody[] bodies) {
-		// TODO: complete method
 		double sum = 0.0;
+		for(CelestialBody b:bodies) {
+			if(!b.equals(this)) {
+				sum+=calcForceExertedByX(b);
+			}
+		}
 		return sum;
 	}
 
 	public double calcNetForceExertedByY(CelestialBody[] bodies) {
 		double sum = 0.0;
+		for(CelestialBody b:bodies) {
+			if(!b.equals(this)) {
+				sum+=calcForceExertedByY(b);
+			}
+		}
 		return sum;
 	}
 
