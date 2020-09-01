@@ -18,11 +18,9 @@ public class NBody {
 	 */
 	public static double readRadius(String fname) throws FileNotFoundException  {
 		Scanner s = new Scanner(new File(fname));
-	
-		// TODO: read values at beginning of file to
-		// find the radius
+		s.nextInt();
 
-		double rad = 0.0;
+		double rad = s.nextDouble();
 		
 		s.close();
 		
@@ -40,25 +38,24 @@ public class NBody {
 	public static CelestialBody[] readBodies(String fname) throws FileNotFoundException {
 
 		Scanner s = new Scanner(new File(fname));
-			
-		// TODO: read # bodies, store in nb
-
-		int nb = 0;          // # bodies to be read
+		int nb = s.nextInt();          // # bodies to be read
 
 		// TODO: Create array that can store nb CelestialBodies
 		// TODO: read and ignore radius
-
+		CelestialBody[] bodies = new CelestialBody[nb];
+		s.nextDouble();
 		for(int k=0; k < nb; k++) {
-
-			// TODO: read data for each body
-			// TODO: construct new body object and add to array
-
+			double myXPos = s.nextDouble();
+			double myYPos = s.nextDouble();
+			double myXVel = s.nextDouble();
+			double myYVel = s.nextDouble();
+			double myMass = s.nextDouble();
+			String myFileName = s.next();
+			bodies[k] = new CelestialBody(myXPos,myYPos,myXVel,myYVel,myMass,myFileName);
 		}
 
 		s.close();
-
-		// TODO: return array of body objects read
-		return null;
+		return bodies;
 	}
 	public static void main(String[] args) throws FileNotFoundException{
 		double totalTime = 39447000.0;
@@ -79,9 +76,7 @@ public class NBody {
 		StdDraw.setScale(-radius, radius);
 		StdDraw.picture(0,0,"images/starfield.jpg");
 
-		// TODO: for music/sound, uncomment next line
-
-		//StdAudio.play("images/2001.wav");
+		StdAudio.play("images/2001.wav");
 
 		// run simulation until over
 
