@@ -40,8 +40,6 @@ public class NBody {
 		Scanner s = new Scanner(new File(fname));
 		int nb = s.nextInt();          // # bodies to be read
 
-		// TODO: Create array that can store nb CelestialBodies
-		// TODO: read and ignore radius
 		CelestialBody[] bodies = new CelestialBody[nb];
 		s.nextDouble();
 		for(int k=0; k < nb; k++) {
@@ -57,6 +55,12 @@ public class NBody {
 		s.close();
 		return bodies;
 	}
+
+	/**
+	 * Main Method
+	 * Creates an array of CelestialBody objects and runs an orbital simulation
+	 * @throws FileNotFoundException if fname cannot be opened
+	 */
 	public static void main(String[] args) throws FileNotFoundException{
 		double totalTime = 39447000.0;
 		double dt = 25000.0;

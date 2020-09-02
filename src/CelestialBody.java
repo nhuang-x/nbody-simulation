@@ -48,12 +48,24 @@ public class CelestialBody {
 		this.myFileName = b.myFileName;
 	}
 
+	/**
+	 * Return x position of this Body.
+	 * @return the x position of the CelestialBody instance
+	 */
 	public double getX() {
 		return myXPos;
 	}
+	/**
+	 * Return y position of this Body.
+	 * @return the y position of the CelestialBody instance
+	 */
 	public double getY() {
 		return myYPos;
 	}
+	/**
+	 * Return x-velocity of this Body.
+	 * @return value of x-velocity.
+	 */
 	public double getXVel() {
 		return myXVel;
 	}
@@ -64,10 +76,17 @@ public class CelestialBody {
 	public double getYVel() {
 		return myYVel;
 	}
-	
+	/**
+	 * Return mass of this Body.
+	 * @return value of mass.
+	 */
 	public double getMass() {
 		return myMass;
 	}
+	/**
+	 * Return filename of this Body.
+	 * @return name of file for Body animation
+	 */
 	public String getName() {
 		return myFileName;
 	}
@@ -81,17 +100,35 @@ public class CelestialBody {
 		return Math.sqrt((this.getX()-b.getX())*(this.getX()-b.getX())+(this.getY()-b.getY())*(this.getY()-b.getY()));
 	}
 
+	/**
+	 * Calculates the force exerted on this CelestialBody by another CelestialBody b
+	 * @param b the other body which exerts force on this CelestialBody
+	 * @return the amount of force exerted on this CelestialBody by CelestialBody B
+	 */
 	public double calcForceExertedBy(CelestialBody b) {
 		return  (6.67*1e-11*this.getMass()*b.getMass())/(Math.pow(calcDistance(b),2));
 	}
-
+	/**
+	 * Calculates the x-component of the force exerted on this CelestialBody by another CelestialBody b
+	 * @param b the other body which exerts force on this CelestialBody
+	 * @return the x-component of the force exerted on this CelestialBody by CelestialBody b
+	 */
 	public double calcForceExertedByX(CelestialBody b) {
 		return calcForceExertedBy(b)*(b.getX()-this.getX())/calcDistance(b);
 	}
+	/**
+	 * Calculates the y-component of the force exerted on this CelestialBody by another CelestialBody b
+	 * @param b the other body which exerts force on this CelestialBody
+	 * @return the y-component of the force exerted on this CelestialBody by CelestialBody b
+	 */
 	public double calcForceExertedByY(CelestialBody b) {
 		return calcForceExertedBy(b)*(b.getY()-this.getY())/calcDistance(b);
 	}
-
+	/**
+	 * Calculates the x-component of the net force force exerted on this CelestialBody by all surrounding bodies
+	 * @param bodies an array of all other CelestialBodies surrounding this CelestialBody
+	 * @return x-component of the net force exerted on this CelestialBody by all surrounding bodies
+	 */
 	public double calcNetForceExertedByX(CelestialBody[] bodies) {
 		double sum = 0.0;
 		for(CelestialBody b:bodies) {
@@ -101,7 +138,11 @@ public class CelestialBody {
 		}
 		return sum;
 	}
-
+	/**
+	 * Calculates the y-component of the net force force exerted on this CelestialBody by all surrounding bodies
+	 * @param bodies an array of all other CelestialBodies surrounding this CelestialBody
+	 * @return y-component of the net force exerted on this CelestialBody by all surrounding bodies
+	 */
 	public double calcNetForceExertedByY(CelestialBody[] bodies) {
 		double sum = 0.0;
 		for(CelestialBody b:bodies) {
@@ -111,7 +152,12 @@ public class CelestialBody {
 		}
 		return sum;
 	}
-
+	/**
+	 * Updates the state of CelestialBody variables myXPos, myYPos, myXVel, myYVel
+	 * @param deltaT a measure of the time passed
+	 * @param xforce net force exerted on this CelestialBody in the x direction
+	 * @param yforce net force exerted on this CelestialBody in the y direction
+	 */
 	public void update(double deltaT, 
 			           double xforce, double yforce) {
 		double accelX = xforce/getMass();
